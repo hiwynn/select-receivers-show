@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined" rel="stylesheet">
+    <link href="node_modules/wynn-select-receiver/styles.css" rel="stylesheet">
+    <script src="node_modules/wynn-select-receiver/main.js"></script>
+    <script src="node_modules/wynn-select-receiver/polyfills.js"></script>
+    <script src="node_modules/wynn-select-receiver/vendor.js"></script>
+    <script src="node_modules/wynn-select-receiver/runtime.js"></script>
+
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap-grid.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="row" style="width: 300px; margin: 100px auto;justify-content: space-around">
+    <button id="test-email" class="btn btn-default">测试 Email</button>
+    <button id="test-phone" class="btn btn-default">测试 Phone</button>
+</div>
+
+<script type="module">
+	import email from './data/email.json.js';
+	import phone from './data/phone.json.js';
+
+	$('#test-email').click(function(){
+		var data = email;
+		var options = {
+			type: 'email', // email, phone, QQ
+			primaryKey: 'id',
+			display: 'name', // 显示 字段
+			valueKey: 'email', // email, phone, QQ 的值
+			groupPrimaryKey: 'groupId',
+			panelClass: 'contact-wrap',
+			languages: {
+				personValueField: '邮箱地址',
+			}
+		};
+		var contacts = data.contacts;
+		var contactGroups = data.groups;
+
+		var popupEl = document.createElement('ng-select-receiver');
+		popupEl.setAttribute('options', JSON.stringify(options));
+		popupEl.setAttribute('contacts', JSON.stringify(contacts));
+		popupEl.setAttribute('groups', JSON.stringify(contactGroups));
+		document.body.appendChild(popupEl);
+
+		popupEl.addEventListener('done', (receivers) => {
+			console.log(receivers);
+			document.body.removeChild(popupEl)
+		});
+
+		popupEl.addEventListener('personCreated', (receivers) => {
+			console.log(receivers);
+		});
+
+		popupEl.addEventListener('personUpdated', (receivers) => {
+			console.log(receivers);
+		});
+
+		popupEl.addEventListener('personDeleted', (receivers) => {
+			console.log(receivers);
+		});
+
+		popupEl.addEventListener('groupUpdated', (receivers) => {
+			console.log(receivers);
+		});
+
+		popupEl.addEventListener('groupCreated', (receivers) => {
+			console.log(receivers);
+		});
+
+		popupEl.addEventListener('groupDeleted', (receivers) => {
+			console.log(receivers);
+		});
+	})
+
+	$('#test-phone').click(function(){
+		var data = phone;
+		var options = {
+			type: 'phone', // email, phone, QQ
+			primaryKey: 'id',
+			display: 'name', // 显示 字段
+			valueKey: 'phone', // email, phone, QQ 的值
+			groupPrimaryKey: 'groupId',
+			panelClass: 'contact-wrap',
+			languages: {
+				personValueField: '手机号码',
+			}
+		};
+		var contacts = data.contacts;
+		var contactGroups = data.groups;
+		var popupEl = document.createElement('ng-select-receiver');
+		popupEl.setAttribute('options', JSON.stringify(options));
+		popupEl.setAttribute('contacts', JSON.stringify(contacts));
+		popupEl.setAttribute('groups', JSON.stringify(contactGroups));
+		document.body.appendChild(popupEl);
+
+		popupEl.addEventListener('done', (receivers) => {
+			console.log(receivers);
+			document.body.removeChild(popupEl)
+		});
+
+		popupEl.addEventListener('personCreated', (receivers) => {
+			console.log(receivers);
+		});
+
+		popupEl.addEventListener('personUpdated', (receivers) => {
+			console.log(receivers);
+		});
+
+		popupEl.addEventListener('personDeleted', (receivers) => {
+			console.log(receivers);
+		});
+
+		popupEl.addEventListener('groupUpdated', (receivers) => {
+			console.log(receivers);
+		});
+
+		popupEl.addEventListener('groupCreated', (receivers) => {
+			console.log(receivers);
+		});
+
+		popupEl.addEventListener('groupDeleted', (receivers) => {
+			console.log(receivers);
+		});
+	})
+
+</script>
+</body>
+</html>
